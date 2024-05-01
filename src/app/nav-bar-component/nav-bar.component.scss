@@ -1,0 +1,55 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+  overflow: hidden;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.example-full-width {
+  width: 80%;
+  padding-left: 8%;
+  // margin-left: 10%;
+}
+
+.mainButton {
+  display: block;
+  margin-left: 1.5rem;
+}
+
+
+ .navList {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: row;
+ }
+
+// .navList span button {
+//   background-color: rgba(0,0,0,0);
+//   border-color: rgba(0,0,0,0);
+//   color: rgb(255 , 255 , 255);
+//   margin: 0 1rem 0 1rem;
+//   transition: opacity .2s ease;
+//   cursor : pointer;
+// }
+
+.navList span button:hover{
+  opacity : 0.5;
+}
+
+.navList span button i{
+  font-size: 1.5rem;
+}
+

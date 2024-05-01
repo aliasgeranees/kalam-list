@@ -1,0 +1,68 @@
+<h1 class="heading">
+    <div>
+        {{ topicName$ | async}}
+    </div>
+</h1>
+
+<div class="filterButtons">
+
+   <button  (click)="sortDate()">
+       <i class="ri-time-line"></i>
+   </button>
+ 
+   <button (click)="sortCount()">
+       <i class="ri-filter-line"></i>
+   </button>
+
+</div>
+
+<form [formGroup]="kalamName" (ngSubmit)="onClick()" class="inputMain">
+
+    <mat-form-field>
+
+        <mat-label>Name of the recital</mat-label>
+    
+        <input type="text" 
+               matInput 
+               formControlName="kalam" 
+               placeholder="Enter Kalam" 
+               value=""
+               [matAutocomplete]="auto">
+
+               <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                 <!-- @for (listOption of filteredOptions | async; track listOption)  {}  -->
+                  <mat-option *ngFor="let listOption of filteredOptions | async" [value]="listOption">{{listOption}} 
+                  </mat-option>
+              </mat-autocomplete>
+    </mat-form-field>
+
+    <button type="submit" class="mainButton" mat-raised-button color="primary">Add to list</button>
+
+</form>
+
+<div *ngFor="let kalam of listNameCountDate; let i=index " class="list-container">
+
+    <div class="card">
+  
+      <mat-card class="cardStyle">
+  
+        <mat-card-content>
+          {{kalam[0]}}
+        </mat-card-content>
+  
+      </mat-card>
+  
+      <button class="cardButton">
+         <div> {{kalam[1]}} </div> 
+      </button>
+  
+      <button class="cardButton" (click)="openDialogToAdd('500ms' , '500ms' , i)">
+          <i class="ri-add-circle-line"> </i>
+      </button>
+  
+      <button class="cardButton" (click)="openDialogToRemove('500ms' , '500ms' , i)">
+        <i class="ri-close-fill"></i>
+      </button>
+      
+    </div>
+  </div>

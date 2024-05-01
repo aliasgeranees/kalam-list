@@ -1,0 +1,68 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
+
+    <!-- <mat-form-field class="example-full-width">
+      <mat-label> Add Category </mat-label>
+      <input matInput placeholder="Recital Name" value="">
+    </mat-form-field>  -->
+
+    <form [formGroup]="topicForm" (ngSubmit)="addTopic()">
+
+      <mat-form-field>
+
+        <mat-label> Name of the topic </mat-label>
+    
+        <input matInput formControlName="topic" placeholder="Enter Topic" value="">
+        
+    </mat-form-field>
+
+    <button type="submit" class="mainButton" mat-raised-button color="primary"> Add to list </button>
+
+    </form>
+
+    
+    <div *ngFor="let topic of topicList; let i=index" >
+      <mat-nav-list class="navList">
+        <a mat-list-item [routerLink]="['/', topic]" > 
+            {{1+i}}   {{topic}}  
+        </a>
+
+        <span>
+
+          <button mat-raised-button [routerLink]="'/'" (click)="openDialog('500ms' , '500ms' , topic , i)">
+            <i class="ri-close-circle-fill"> </i> 
+          </button>
+        </span>
+   
+          
+      </mat-nav-list>
+
+      
+    </div>
+    
+  </mat-sidenav>
+  
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span> Recitals </span>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    
+    <router-outlet></router-outlet>
+    
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
